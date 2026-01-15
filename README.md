@@ -88,9 +88,22 @@ The default working directory inside the container is `/app/default`. All PHP, N
 
 ## Customization
 
--   Place custom PHP configs in `/config/php`.
--   Add Nginx site configs in `nginx/conf.d/`.
--   Add Supervisor configs in `supervisor/conf.d/`.
+You can customize the image by mounting your own configuration directories using `docker run` or Docker Compose:
+
+-   **PHP:** Mount custom `.ini` files to `/usr/local/etc/php/conf.user.d`
+-   **Supervisor:** Mount custom config files to `/etc/supervisor/conf.user.d`
+-   **SSH:** Mount your SSH keys/config to `/home/app/.ssh`
+
+Example with `docker run`:
+
+```bash
+docker run -it --rm \
+    -v $(pwd)/php-config:/usr/local/etc/php/conf.user.d \
+    -v $(pwd)/supervisor-config:/etc/supervisor/conf.user.d \
+    -v $(pwd)/nginx-sites:/nginx/conf.d \
+    -v ~/.ssh:/home/app/.ssh \
+    ramainvicta/php:8.4-fpm
+```
 
 ## License
 
