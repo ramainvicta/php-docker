@@ -100,7 +100,6 @@ Example with `docker run`:
 docker run -it --rm \
     -v $(pwd)/php-config:/usr/local/etc/php/conf.user.d \
     -v $(pwd)/supervisor-config:/etc/supervisor/conf.user.d \
-    -v $(pwd)/nginx-sites:/nginx/conf.d \
     -v ~/.ssh:/home/app/.ssh \
     ramainvicta/php:8.4-fpm
 ```
